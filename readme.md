@@ -1,6 +1,6 @@
-# appdaemon-rpi - [![Build Status](https://travis-ci.org/stevebargelt/appdaemon-rpi.svg?branch=master)](https://travis-ci.org/stevebargelt/appdaemon-rpi)
+# appdaemon-rpi - [![Build Status](https://travis-ci.org/stevebargelt/appdaemon-rpi.svg?branch=master)](https://travis-ci.org/stevebargelt/appdaemon-rpi)[![Docker Hub Pulls](https://img.shields.io/docker/pulls/stevebargelt/appdaemon-rpi.svg)](https://hub.docker.com/r/stevebargelt/appdaemon-rpi/)
 
-[@stevebargelt](http://www.twitter.com/stevebargelt)
+Twitter: [@stevebargelt](http://www.twitter.com/stevebargelt)
 
 ## Raspberry Pi (2,3. Not 1 or Zero/Zero W - coming soon) AppDaemon Image
 
