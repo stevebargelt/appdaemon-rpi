@@ -1,0 +1,20 @@
+language: python
+sudo: required
+services:
+- docker
+before_install:
+- git submodule update --init --recursive
+- docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+- docker run --rm --privileged multiarch/qemu-user-static:register
+- cp ./Dockerfile appdaemon/Dockerfile
+install:
+- docker build --rm --no-cache -t stevebargelt/appdaemon-rpi certbot/
+- docker push stevebargelt/appdaemon-rpi
+script: true
+notifications:
+  slack:
+    rooms:
+      secure: ROWB+22AhCBxMdL3RE9TOeZR9Y+iPGFvrqHkJsxANiGWre9M9txJZib5RBLF2zfEn5Is6BeW5Sq4Q+Lsmo7xIMuILXammmI02plTjvJpxafU6L4N4tBYhS/kucHkPEDe0JmAme/Ed69mFtaqSxZyMX63QPwX0dyozVKRFhcKA5tQdsaZn5e3yiK4H/7v0ZT9gcyx4qtL/Y55kkpNfJOv8bSz1Jn0lmE85Qr36uS4aTRTnlGS1jRmmB37Wo2jIR5+5wHUFenlkC1gwbZtFHUgHuzfPerG1GTeHpzt0MlF2VZGL8JV9G0L1kP0mbuhYLHIJ7Ad3r3t/swoc6Q7FIh7LvDwCHn0HLxegnAlRMMWaYb+4guoyw1xanQ6eCThrr3VUXWtQUMKhFlUyts4EkOM0u6yj6x7zcR2wdQ4Yw6Ye63ZIdxfiEX5QTRGJVfp/AKG5EldZsaLp8q8cUZlx/ZUwI1eB92KelZrRolp2EnrBqU8tLqLv+FluuWkm2O99eFwmtEfV+G7KwvRx9+/lQbeYoJim/2sD2jg5zOe3fWwE5FgRsuzMnT3RUtnhpw74S7TJvCtplOF2xi1Uo/3sP0AgjRdSlqp6cuTUUVHuUBAAwy/DfTSW0YLElGWmsK/vV342N8ng7mKO+BVA5aTOAvmVDOaAZrEftcCEEGHx8p6xfE=
+    template:
+    - Status=%{result}, Job=%{repository_name}, Build=%{build_number}, URL=%{build_url},
+      HUB=https://hub.docker.com/r/stevebargelt/appdaemon-rpi/
