@@ -1,11 +1,10 @@
 language: python
 sudo: required
-group: deprecated-2017Q4
 services:
 - docker
 before_install:
 - git submodule update --init --recursive
-- docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 - docker run --rm --privileged multiarch/qemu-user-static:register
 - cp ./Dockerfile appdaemon/Dockerfile
 install:
